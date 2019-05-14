@@ -1,0 +1,78 @@
+<head> 
+    <meta charset="utf-8">
+    <title>Antipteuraditilismo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sarabun" rel="stylesheet">
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="panel scores"> 
+            <div class="score">
+                <img src="imgs/helmet.svg" class="imgMini">
+                <h1>Viking</h1>
+                <div class="life-bar">
+                    <div class="life"
+                        :class="{danger: playerLife < 20}"
+                        :style="{width: playerLife + '%'}">
+                    </div>
+                    {{playerLife}}%
+                </div>
+            </div>
+            <div class="score">
+                <img src="imgs/kraken.svg" class="imgMini">
+                <h1>Kraken</h1>
+                <div class="life-bar">
+                    <div class="life"
+                        :class="{danger: monsterLife < 20}"
+                        :style="{width: monsterLife + '%'}">
+    
+                    </div>
+                    {{monsterLife}}%
+                </div>
+            </div>            
+        </div>
+        <div v-if="hasResult" class="panel result"> 
+            <div v-if="monsterLife == 0" class="win">
+                <img src="imgs/beer.svg" class="imgMini"><br>
+                DWAAAAAR, Você Venceu mais uma guerra, os Deuses festejam em Valhalla!!!
+            </div>
+            <div v-if="playerLife == 0" class="lose">
+                <img src="imgs/viking-ship.svg" class="imgMini"><br>
+                Volte para casa e arrume mais soldados, você está fraco!
+            </div>
+        </div>
+        <div class="panel btns">
+            <template v-if="running">
+                <button @click="attack(false)" class="btn attack">
+                    <img src="imgs/axes.svg" class="imgBtn"><br>
+                    Ataque 
+                </button>
+                <button  @click="attack(true)" class="btn especial-attack"> 
+                    <img src="imgs/thor-hammer.svg" class="imgBtn"><br>
+                    Usar Mjölnir 
+                </button>
+                <button @click="healAndHurt" class="btn heal">
+                    <img src="imgs/horn.svg" class="imgBtn"><br>
+                    Curar
+                </button>
+                <button @click="running = false" class="btn give-up">
+                    <img src="imgs/gloves.svg" class="imgBtn"><br>
+                    Desistir
+                </button>
+            </template>
+            <button v-else @click="startGame" class="btn new-game"> Iniciar jogo</button>
+        </div>
+        <div v-if="logs.length" class="panel log"> 
+            <ul>
+                <li v-for="log in logs"
+                    :class="log.clss"
+                    class="log">
+                    {{log.txt}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
