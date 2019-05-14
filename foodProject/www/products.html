@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>FitFood</title>
+		 
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="stylesheet" type="text/css" href="css/fontawesome.css" />
+		<style type="text/css">
+			.bg{
+				background-color: #732626;
+			}
+			#products{
+	            background-color: #eaeaea;
+			    width: 100%;
+			    padding-bottom: 50%;
+/*			    border-bottom-left-radius: 56px;
+			    border-bottom-right-radius: 66px;*/
+			    display: flex;
+			    flex-wrap: wrap;
+			    justify-content: center;
+			}
+			#cart{
+			    height: 11vh;
+    			justify-content: flex-start;
+    			margin-left: 5%;
+			    padding-top: 10px;
+			}
+			.cartText{
+				font-size:2.2vh;
+				margin-right: 10px;
+				margin-top: 10px
+			}
+			.card{
+			    width: 20vh;
+			    background-color: #fdfdfd;
+			    max-height: 30%;
+			    padding: 10px;
+			    color: black;
+			    margin: 5px;
+			    margin-top:10px;
+			    border-radius: 10px;
+			}
+			.card img{
+			    max-width: 100%;
+			    min-height: 48%;
+			    margin-bottom: 1vh;
+			    padding-top: 5px;
+			}
+			.cardPrice{
+			    font-size: 2.8vh;
+			    text-align: left;
+			    margin-top: 1vh;
+			    margin-bottom: -1.6vh;
+			}
+			.cardText{
+			    text-align: left;
+			}
+			.cardTitle{
+			    margin-bottom: -18px;
+    			font-size: 17px;
+			}
+			.cardSubTitle{
+				color: grey;
+			}
+			.card:nth-child(2n+3){
+				margin-top:20px;
+			}
+			.card:nth-child(3n-1){
+				margin-top:25px;
+			}
+			.card:nth-child(4n+1){
+				margin-top:15px;
+			}
+			.modalProduct, .modalCart{
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background-color: #f5f5f5;
+				z-index: 1000;
+			    display: flex;
+			    flex-direction: column;
+			}
+			.modalCart{
+				background-color:  #732626
+			}
+			i.fa-chevron-left {
+			    color: #000;
+			    float: left;
+			    margin: 15px;
+			    margin-top: 28px;
+			    font-size: 3vh;
+			}
+			.modalCart i.fa-chevron-left{
+				color: #fff;
+			}
+		 	
+			#modalPanel{
+				width: 100%;
+			    display: flex;
+			    flex-wrap: wrap;
+		        flex-direction: column;
+		        justify-content: center;
+    			text-align: center;
+    			align-items: center;
+    			margin-top: -5vh;
+			}
+			#modalPanel img{
+			    max-width: 90%;
+			    max-height: 32%;
+			    justify-content: center;
+			}
+			#modalTitle{
+			    font-size: 4vh;
+    			color: black;
+    			font-family: PoppinsBold;
+			}
+			#modalSubTitle{
+			    margin-top: -4vh;
+    			color: grey;
+			}
+			#modalPriceValue{
+				font-size: 4vh;
+			    color: black;
+			    right: 0;
+			    position: fixed;
+			    margin-right: 11%;
+			}
+			#modalDesc{
+			    color: black;
+			    text-align: justify;
+			    padding: 10px;
+			}
+			#addToCart, .finishCart{
+			    font-size: 2.5vh;
+			    padding: 20px;
+			    margin-top: 10px;
+			    background-color: #ffcb55;
+			    color: black;
+			    border-radius: 4vh;
+			    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+			}
+			#cartItem img{
+			    width: 30px;
+    			height: 30px;
+			    margin-left: 3px;
+			}
+			#cartItem{
+			    background-color: white;
+    			border-radius: 50%;	
+			    padding-right: 4px;
+		        margin-top: 5px;
+			}
+			.cartTotal{
+			    margin-top: 0px;
+			    right: 6%;
+			    position: absolute;
+			    width: 35px;
+			    background-color: #ffcb55;
+			    color: black;
+			    border-radius: 50%;
+			    padding: 5px;
+			}
+			.cartItens{
+			    margin-right: 8px;
+			}
+			.plus-minus-input {
+			  -webkit-align-items: center;
+			      -ms-flex-align: center;
+			          align-items: center;
+			}
+
+			.plus-minus-input .input-group-field {
+		      	text-align: center;
+			    padding: 11px;
+			    border: none;
+			    background-color: transparent;
+			    width: 55px;
+			    border-radius: 22%;
+			}
+
+			.plus-minus-input .input-group-field::-webkit-inner-spin-button,
+			.plus-minus-input .input-group-field ::-webkit-outer-spin-button {
+			  -webkit-appearance: none;
+			          appearance: none;
+			}
+
+			.plus-minus-input .input-group-button .circle {
+			    padding: 0.25em 0.8em;
+			    background-color: transparent;
+			    border: none;
+			    margin-left: -9px;
+			    width: 40px;
+			    margin-right: -9px;
+			}
+			#plusMinusButtons{
+			    display: flex;
+			    margin-left: 12%;
+			    /* width: 50%; */
+			    position: fixed;
+			    left: 0;
+			    border: 1px solid grey;
+			    margin-top: 2px;
+			    border-radius: 30px;
+			    padding-left: 10px;
+			    padding-right: 10px;
+			}
+			td.tdBg{
+				width: 16%;
+			}
+			.tdBgImg{
+			    text-align: left;
+			    margin-left: 20%;
+			    width: 80%;
+			    border-radius: 50%;
+			}
+			#modCartPrice{
+				color: #c5c5c5;
+			}
+			td .tdBgImg img{
+			    max-width: 100% !important;
+			    margin-top: 10%;
+			    margin-bottom: 10%;
+			}
+			@media(min-width: 510px){
+				#modalPanel img{
+				    max-width: 40%;
+				}
+			}
+			@media(min-width: 900px){
+				#modalPanel img{
+				    max-width: 35%;
+				}
+				table{
+				    width: 60%;
+				}
+			}
+			.btn-radio {
+			  cursor: pointer;
+			  display: inline-block;
+			  float: left;
+			  -webkit-user-select: none;
+			  user-select: none;
+			}
+			@media screen and (max-width: 480px) {
+			  .btn-radio {
+			    display: block;
+			    float: none;
+			  }
+			  .btn-radio:not(:first-child) {
+			    margin-left: 0;
+			  }
+			}
+			.btn-radio svg {
+			  fill: none;
+			  vertical-align: middle;
+			}
+			.btn-radio svg circle {
+			  stroke-width: 2;
+			  stroke: #C8CCD4;
+			}
+			.btn-radio svg path {
+			  stroke: #ffcb55;
+			}
+			.btn-radio svg path.inner {
+			  stroke-width: 6;
+			  stroke-dasharray: 19;
+			  stroke-dashoffset: 19;
+			}
+			.btn-radio svg path.outer {
+			  stroke-width: 2;
+			  stroke-dasharray: 57;
+			  stroke-dashoffset: 57;
+			}
+			.btn-radio input {
+			  display: none;
+			}
+			.btn-radio input:checked + svg path {
+			  transition: all 0.4s ease;
+			}
+			.btn-radio input:checked + svg path.inner {
+			  stroke-dashoffset: 38;
+			  transition-delay: 0.3s;
+			}
+			.btn-radio input:checked + svg path.outer {
+			  stroke-dashoffset: 0;
+			}
+			.btn-radio span {
+			  display: inline-block;
+			  vertical-align: middle;
+			}
+			#anotherAddr{
+			    background: transparent;
+			    border: 1px solid #d6d6d6;
+			    color: #ffffff;
+			    border-radius: 2px;
+			    margin-top: 3px;
+			    padding: 2px;
+			    display: none;
+		        font-size: 1.5vh;
+    			width: 100%;
+			}
+			#divAddr{
+			    background-color: #813030;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="modalCart" id="modalCart" style="display: none;">
+			<i class="fas fa-2x fa-chevron-left closeModal"></i><br><br>
+			<div id="modalPanel">
+				<h2 style="color:white; font-family: PoppinsBold">Carrinho</h2>
+				<table id="tableCart">
+				</table>
+				<table id="divAddr">
+					<tr><td>&thinsp;</td></tr>
+					<tr>
+						<td class="tdBg"><div class="tdBgImg" style="background-color: transparent;"><img src="img/fast.svg"></div></td>
+						<td style="text-align: left;padding-left: 3%;"> 
+							<strong>Entrega</strong>
+						    <div class="cntr">
+							    <label for="rdo-1" class="btn-radio" style="width: 100%;">
+							      <input type="radio" id="rdo-1" name="radio-grp">
+							      <svg width="20px" height="20px" viewBox="0 0 20 20">
+							        <circle cx="10" cy="10" r="9"></circle>
+							        <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z" class="inner"></path>
+							        <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z" class="outer"></path>
+							      </svg>
+							      <span>Meu endereço</span>
+							    </label>
+							    <label for="rdo-2" class="btn-radio" style="width: 100%;">
+							      <input type="radio" id="rdo-2" name="radio-grp">
+							      <svg width="20px" height="20px" viewBox="0 0 20 20">
+							        <circle cx="10" cy="10" r="9"></circle>
+							        <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z" class="inner"></path>
+							        <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z" class="outer"></path>
+							      </svg>
+							      <span>Novo endereço</span>
+							    </label>
+							    <textarea id="anotherAddr" rows="2"></textarea>
+						  	</div>
+						</td>
+						<td id="truckage" data-truckage="5.00">R$ 5,00 </td>
+					</tr>
+					<tr><td>&thinsp;</td></tr>
+				</table>
+				<div class="finishData" style="display: flex">
+					<h3> Total:&thinsp; </h3>
+					<h3 id="total"> </h3>
+				</div>
+				<div class="finishCart" style="display: flex;">
+					<strong class="strongFinishCart"> Realizar pedido </strong>
+				</div>
+			</div>
+		</div>
+		<div class="modalProduct" id="modalProduct" style="display: none;">
+			<i class="fas fa-2x fa-chevron-left closeModal"></i><br><br>
+			<div id="modalPanel">
+				<img id="modalImg" src="">
+				<div id="modalText">
+					<p id="modalTitle"></p>
+					<p id="modalSubTitle"></p>
+				</div>
+				<div id="modalPrice">
+					<div class="input-group plus-minus-input" id="plusMinusButtons">
+					  <div class="input-group-button">
+					    <button type="button" class="button hollow circle" data-quantity="minus" data-field="quantity">
+					      <i class="fa fa-minus" aria-hidden="true"></i>
+					    </button>
+					  </div>
+					  <input class="input-group-field" type="number" name="quantity" id="modalQtd" value="0">
+					  <div class="input-group-button">
+					    <button type="button" class="button hollow circle" data-quantity="plus" data-field="quantity">
+					      <i class="fa fa-plus" aria-hidden="true"></i>
+					    </button>
+					  </div>
+					</div>
+					<strong id="modalPriceValue">
+					</strong>
+				</div><br><br><br>
+				<div id="modalDesc">
+				</div>
+				<div id="addToCart" class="addToCart">
+					<strong class="addToCart"> Adicionar ao carrinho </strong>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="content" id="content">
+				<div class="device">
+					<div class="device__screen">
+						<img src="img/logo.svg" id="logo">
+						<div id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: hidden">
+							<svg width="1000px" height="1000px">
+								<path id="pathA" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+								<path id="pathB" d="M 300 500 L 700 500"></path>
+								<path id="pathC" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+							</svg>
+							<button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+						</div>
+						<div id="dummy" class="dummy" style="display: none">
+							<div class="dummy__item"onclick="location.href='category.html'"><div class="dummy__item__value">Cardápio</div></div>
+							<div class="dummy__item" id="profile"><div class="dummy__item__value">Meus Pedidos</div></div>
+							<div class="dummy__item"onclick="location.href='index.html'"><div class="dummy__item__value">Página Incial</div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="bg">
+			<div class="panel" id="products"> 
+			</div>
+			<div class="panel" id="cart" style="display: none"> 
+				<div class="cartText">
+					<strong>Carrinho</strong>
+				</div>
+				<div id="cartItens" style="display: flex;">
+				
+				</div>
+				<div class="cartTotal" id="cartTotal">
+				</div>
+			</div>
+		<script src="js/jquery.js"></script>
+		<script src="js/segment.min.js"></script>
+		<script src="js/ease.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/nucleo.js"></script>
+		<script type="text/javascript">
+			appFitFood.getProducts();
+			appFitFood.getCart();
+			document.addEventListener('click',(e)=>{
+			    appFitFood.click.product(e.target);
+			});
+			document.getElementById('profile').addEventListener('click',()=>{
+				if(localStorage.getItem('token'))
+					location.href="profile.html";
+				else
+					location.href="login.html";
+			});
+			jQuery(document).ready(function(){
+			    $('[data-quantity="plus"]').click(function(e){
+			        e.preventDefault();
+			        fieldName = $(this).attr('data-field');
+			        var currentVal = parseInt($('input[name='+fieldName+']').val());
+			        if (!isNaN(currentVal)) {
+			            $('input[name='+fieldName+']').val(currentVal + 1);
+			        } else {
+			            $('input[name='+fieldName+']').val(0);
+			        }
+			    });
+			    $('[data-quantity="minus"]').click(function(e) {
+			        e.preventDefault();
+			        fieldName = $(this).attr('data-field');
+			        var currentVal = parseInt($('input[name='+fieldName+']').val());
+			        if (!isNaN(currentVal) && currentVal > 0) {
+			            $('input[name='+fieldName+']').val(currentVal - 1);
+			        } else {
+			            $('input[name='+fieldName+']').val(0);
+			        }
+			    });
+			});
+
+		</script>
+	</body>
+</html>

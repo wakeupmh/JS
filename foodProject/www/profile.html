@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>FitFood</title>
+		 
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="stylesheet" type="text/css" href="css/fontawesome.css" />
+		<style type="text/css">
+			.profile{
+            	background-image: linear-gradient(#732727,#9a2323);
+			    width: 100%;
+			    /* padding-bottom: 16%; */
+			    display: flex;
+			    padding: 2%;
+			    flex-wrap: wrap;
+			    flex-direction: column;
+			    justify-content: center;
+			    align-items: center;
+			    border-bottom-left-radius: 50% 20%;
+			}
+			.profile h2{
+				margin-top: 5px;
+			}
+			.profile img{
+				width: 15vh;
+			    height: 15vh;
+			    border-radius: 50%;
+		        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.62);
+			}
+			#profileEmail{
+				font-size: 12px;
+				margin-top: -24px;	
+			}
+			#profilePhone{
+				font-size: 12px;
+				margin-top: -12px;	
+			}
+			#profileEnd{
+				font-size: 11px;
+			    margin-top: -10px;
+			    width: 65%;
+			    line-height: 1;
+			    margin-bottom: 25px;
+			}
+			#pedidoStatus{
+			    background-color: #373752;
+			    width: 103%;
+			    font-size: 1.5vh;
+			    text-shadow: 1px 1px 2px #000000b8;
+			    margin-left: -1.5%;
+			    font-weight: bold;
+			    margin-bottom: 3px;
+			}
+			.btnBloco{
+		        background-image: linear-gradient(#732727,#9a2323);
+			    border-radius: 10%;
+			    margin: 1%;
+			    margin-right: 2.2%;
+			    width: 30%;
+			}
+			.btnBloco img{
+		    	max-width: 80%;
+    			padding: 5px;
+    			min-height: 52%;
+			}
+			.fa-cog{
+			    margin-top: -27px;
+			    margin-right: -70px;
+			    font-size: 2.5vh;
+			    background-color: #852525;
+			    padding: 5px;
+			    border-radius: 50%;
+			}
+			#hist{
+			    margin-bottom: -5%;
+			    color: #3e3e3e;
+			    font-weight: bold;
+			    font-family: PoppinsBold;
+			    text-align: center;
+			}
+			#profileDelete{
+			    padding-top: 10%;
+			    color: #ffffff;
+			    opacity: 0.65;
+			    text-shadow: 1px 1px 5px #ffff0014;
+			    font-size: 1.5vh;
+			    text-decoration-line: underline;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="content" id="content">
+				<div class="device">
+					<div class="device__screen">
+						<img src="img/logo.svg" id="logo">
+						<div id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: hidden">
+							<svg width="1000px" height="1000px">
+								<path id="pathA" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+								<path id="pathB" d="M 300 500 L 700 500"></path>
+								<path id="pathC" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+							</svg>
+							<button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+						</div>
+						<div id="dummy" class="dummy" style="display: none">
+							<div class="dummy__item"onclick="location.href='category.html'"><div class="dummy__item__value">Cardápio</div></div>
+							<div class="dummy__item" id="profile"><div class="dummy__item__value">Meus Pedidos</div></div>
+							<div class="dummy__item"onclick="location.href='index.html'"><div class="dummy__item__value">Página Incial</div></div>
+							<div class="dummy__item" id="logout"><div class="dummy__item__value">Deslogar</div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="panel profile"> 
+			<img src="img/user.png"><i class="fa fa-cog" aria-hidden="true" id="edit"></i>
+			<h2 id="profileName"></h2>
+			<p id="profileEmail"></p>
+			<p id="profileEnd"></p>
+		</div>
+		<h3 id="hist">Histórico</h3>
+		<div class="panel" id="orders" style="justify-content: flex-start;margin: 6%;">
+		</div>
+		<div class="panel profile" id="profBottom" style="padding-bottom:12%;border-top-right-radius:50% 20%;border-bottom-left-radius:0;background-image: linear-gradient(#9a2323, #732727);"> 
+			<p id="profileDelete">Deletar minha conta</p>
+		</div>
+		<script src="js/jquery.js"></script>
+		<script src="js/segment.min.js"></script>
+		<script src="js/ease.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/nucleo.js"></script>
+		<script type="text/javascript">
+			appFitFood.getUser();
+			appFitFood.getOrders();
+			document.getElementById('profile').addEventListener('click',()=>{
+				if(localStorage.getItem('token'))
+					location.href="profile.html";
+				else
+					location.href="login.html";
+			});
+			document.getElementById('edit').addEventListener('click',()=>{
+				location.href="update.html";
+			});
+			document.getElementById('profileDelete').addEventListener('click',()=>{
+				if (confirm('Deseja realmente deletar sua conta?')) {
+		    		appFitFood.delete();
+				} else {
+				   
+				}
+			});
+			document.getElementById('logout').addEventListener('click',()=>{
+				if (confirm('Deseja realmente deslogar?')) {
+		    		localStorage.clear();
+		    		location.href="index.html";
+				} else {
+				   
+				}
+			});
+		</script>
+	</body>
+</html>

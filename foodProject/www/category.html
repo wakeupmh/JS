@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>FitFood</title>
+		 
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="stylesheet" type="text/css" href="css/fontawesome.css" />
+		<style type="text/css">
+			#categories{
+                background-image: linear-gradient(#a23e3e, #5d1a1a);
+			    width: 100%;
+			    padding-bottom: 40%;	
+			}
+			.bgCategory{
+			    background-size: cover;
+			    width: 100%;
+		        margin-bottom: -1px;
+			}
+			.category{
+				width: 100%;
+		        padding-bottom: 12.5%;
+			    background-color: rgba(0, 0, 0, 0.3411764705882353);
+			    text-align: center;
+			    font-family: PoppinsBold;
+			}
+			.catTitle{
+			    font-size: 4vh;
+    			padding-top: 12.5%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container" id="container">
+			<div class="content" id="content">
+				<div class="device">
+					<div class="device__screen">
+						<img src="img/logo.svg" id="logo">
+						<div id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: hidden">
+							<svg width="1000px" height="1000px">
+								<path id="pathA" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+								<path id="pathB" d="M 300 500 L 700 500"></path>
+								<path id="pathC" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+							</svg>
+							<button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+						</div>
+						<div id="dummy" class="dummy" style="display: none">
+							<div class="dummy__item" onclick="location.href='category.html'"><div class="dummy__item__value">Cardápio</div></div>
+							<div class="dummy__item" id="profile"><div class="dummy__item__value">Meus Pedidos</div></div>
+							<div class="dummy__item"onclick="location.href='index.html'"><div class="dummy__item__value">Página Incial</div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div  id="categories"> 
+		</div>
+		<script src="js/jquery.js"></script>	
+		<script src="js/segment.min.js"></script>
+		<script src="js/ease.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/nucleo.js"></script>
+		<script type="text/javascript">
+			appFitFood.getCategories();
+			document.getElementById('profile').addEventListener('click',()=>{
+				if(localStorage.getItem('token'))
+					location.href="profile.html";
+				else
+					location.href="login.html";
+			});
+		 	document.addEventListener('click',(e)=>{
+			    if(e.target && (e.target.className == 'category' ||  e.target.className == 'catTitle')){
+			    	let dataId = e.target.getAttribute('data-id') != null ? e.target.getAttribute('data-id') :e.target.parentNode.getAttribute('data-id');
+			        sessionStorage.setItem('_idCateg', dataId);
+			        location.href="products.html"
+		     	}
+		 	})
+		</script>
+	</body>
+</html>

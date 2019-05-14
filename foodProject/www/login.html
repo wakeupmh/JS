@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>FitFood</title>
+		 
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<style type="text/css">
+			.panel input{
+			    width: 90%;
+			    background-color: transparent;
+			    border: none;
+			    border-bottom: 1px solid white;
+			    color: white;
+			    font-size: 20px;
+			}
+			.panel h4{
+				font-size:2.7vh;
+				margin-bottom: 0.5vh;
+				font-family: PoppinsBold;
+			}
+		</style>
+	</head>
+	<body>
+		<video autoplay muted loop id="video">
+		  <source src="img/veg.mp4" type="video/mp4">
+		</video>
+		<div class="cPanel">
+			<div class="container">
+				<div class="content" id="content">
+					<div class="device">
+						<div class="device__screen">
+							<img src="img/logo.svg" id="logo">
+							<div id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: hidden">
+								<svg width="1000px" height="1000px">
+									<path id="pathA" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+									<path id="pathB" d="M 300 500 L 700 500"></path>
+									<path id="pathC" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+								</svg>
+								<button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+							</div>
+							<div id="dummy" class="dummy" style="display: none">
+								<div class="dummy__item"onclick="location.href='category.html'"><div class="dummy__item__value">Cardápio</div></div>
+								<div class="dummy__item" id="profile"><div class="dummy__item__value">Meus Pedidos</div></div>
+								<div class="dummy__item"onclick="location.href='index.html'"><div class="dummy__item__value">Página Incial</div></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+			<div class="panel" style="align-items: center;flex-direction: column;    margin-top: 11vh;"> 
+				<h4>Login</h4>
+				<input type="text" id="login" name="">
+				<h4>Senha</h4>
+				<input type="password" id="password" name="" style="margin-bottom: 3vh">
+				<div class="btnFull" id="sigIn"> Entrar</div>
+				<div class="btnOutline" onclick="location.href='index.html'"> Cancelar</div>
+
+			</div>
+
+		</div>
+		<script src="js/jquery.js"></script>
+		<script src="js/segment.min.js"></script>
+		<script src="js/ease.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/nucleo.js"></script>
+		<script type="text/javascript">
+			document.getElementById('profile').addEventListener('click',()=>{
+				if(localStorage.getItem('token'))
+					location.href="profile.html";
+				else
+					location.href="login.html";
+			});
+			document.getElementById('sigIn').addEventListener('click',()=>{
+				let login = document.getElementById('login').value;
+				let password = document.getElementById('password').value;
+
+				if(login != '' && password != '')
+					appFitFood.auth(login, password);
+				else
+					alert('Usuário ou senha não informados');
+			});
+		</script>
+	</body>
+</html>
