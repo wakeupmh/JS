@@ -1,3 +1,3 @@
 # JS
 
-## Some js based projects.
+## Some js projects.
