@@ -6,7 +6,6 @@ exports.post = async (req, res) => {
     let delimiter = req.body.delimiter;
     if(author){
         let result = await handlePoetry(author, title, delimiter);
-        console.log(result);
         res.status(200).send(result);
     }else{
         res.status.send(400).send('Params error')

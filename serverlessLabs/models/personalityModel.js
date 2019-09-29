@@ -32,14 +32,19 @@ const getPersonalityInside = async (_author, _title, _delimiter) =>{
                         return null
                     });
     let params = {
-        content: content,
+        content: content.data.delimitedLines,
         content_type: 'text/plain',
         raw_scores: true,
         consumption_preferences: true
     };
-    return personality.profile(params, function(error, response) {
+    return personality.profile(params)
+    .then(response => {
         return getTextSummary(response)
     })
+    .catch(error =>console.log(error))
+    // return personality.profile(params, function(error, response) {
+    //     return getTextSummary(response)
+    // })
 }
 
 module.exports = getPersonalityInside;
