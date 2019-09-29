@@ -1,5 +1,5 @@
 require('dotenv').config({ silent: true });
-const app = require('../src/app');
+const app = require('./app');
 const port = validatePort(process.env.PORT || '3000');
 function validatePort(val) {
     const port = parseInt(val, 10);
