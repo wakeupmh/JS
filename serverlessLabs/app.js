@@ -8,6 +8,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //Routes
 const poetry = require('./routes/poetry');
 const personality = require('./routes/personality');
-app.use('/poetry', poetry);
-app.use('/personality', personality);
+app.use('/api/poetry', poetry);
+app.use('/api/personality', personality);
 module.exports = app;
