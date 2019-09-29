@@ -1,4 +1,4 @@
-'use strict';
+
 const axios = require('axios');
 async function getPoetry(author, title){
     return axios.get(`http://poetrydb.org/author,title/${author};${title}`)

@@ -17,10 +17,12 @@ const getTextSummary = personalityProfile => {
     }
 };
 
-const getPersonalityInside = () =>{
-    let content = axios.post('http://localhost:3000/api/poetry/get-poetry/', 
+const getPersonalityInside = async (_author, _title, _delimiter) =>{
+    let content = await axios.post('http://localhost:3000/api/poetry/get-poetry/', 
                         {
-                            author:'Fernando Pessoa'
+                            author:_author,
+                            title: _title,
+                            delimiter:_delimiter
                         }
                     )
                     .then(result => {
@@ -35,7 +37,7 @@ const getPersonalityInside = () =>{
         raw_scores: true,
         consumption_preferences: true
     };
-    personality.profile(params, function(error, response) {
+    return personality.profile(params, function(error, response) {
         return getTextSummary(response)
     })
 }
