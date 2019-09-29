@@ -1,6 +1,7 @@
 # IBM  Watson
 ## What's this?😅
 ![enter image description here](https://image.slidesharecdn.com/ibmwatsonprogressandroadmap-saxena-130223073801-phpapp01/95/ibm-watson-progress-and-2013-roadmap-2-638.jpg?cb=1361726097)
+
   Watson is an **IBM** [supercomputer](https://whatis.techtarget.com/definition/supercomputer) that combines artificial intelligence ([AI](https://searchenterpriseai.techtarget.com/definition/AI-Artificial-Intelligence)) and sophisticated analytical software for optimal performance as a "question answering" machine computer system capable of answering questions posed in natural language based on  **cognitive computing** 🤯
 
 **Cognitive computing**  is a technique which is a set of several techniques:
