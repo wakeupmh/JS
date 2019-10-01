@@ -90,7 +90,7 @@ module.exports  = handlePoetry;
 The final result is something like that:
 ```javascript
 {
-	"title": "Dreams",
+    "title": "Dreams",
     "author": "Edgar Allan Poe",
     "lines": [
       "Oh! that my young life were a lasting dream!",
