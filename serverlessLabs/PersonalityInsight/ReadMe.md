@@ -55,3 +55,80 @@ Or just:
 ```javascript
 npm i --save axios body-parser express nodemon personality-text-summary watson-developer-cloud
 ```
+### Retrieving the poem 📜
+The **poetryModel.js** where I access to **PoetryDB**
+```javascript
+const axios =  require('axios');
+async  function  getPoetry(author, title){
+return axios.get(`http://poetrydb.org/author,title/${author};${title}`)
+	.then(result  => {
+		return result.data[0];
+	})
+	.catch(error  => {
+		console.log(error);
+		return  null;
+	});
+}
+module.exports  = getPoetry;
+```
+I unifing my response with a delimiter passed as param on the **poetryBusiness.js** where I handle my information
+```javascript
+let getPoetry =  require('../models/poetryModel')
+async  function  handlePoetry(author, title, delimiter){
+	let unifiedLines =  "";
+	let poetry =  await  getPoetry(author, title);
+	
+	for(let i in poetry.lines){
+		unifiedLines +=  `${poetry.lines[i]}${delimiter}`
+	}
+	let result =  Object.assign({}, poetry, {delimitedLines:unifiedLines})
+	return result;
+}
+module.exports  = handlePoetry;
+```
+The final result is something like that:
+```javascript
+{
+	"title": "Dreams",
+    "author": "Edgar Allan Poe",
+    "lines": [
+      "Oh! that my young life were a lasting dream!",
+      "My spirit not awakening, till the beam",
+      "Of an Eternity should bring the morrow.",
+      "Yes! tho' that long dream were of hopeless sorrow,",
+      "'Twere better than the cold reality",
+      "Of waking life, to him whose heart must be,",
+      "And hath been still, upon the lovely earth,",
+      "A chaos of deep passion, from his birth.",
+      "But should it be- that dream eternally",
+      "Continuing- as dreams have been to me",
+      "In my young boyhood- should it thus be given,",
+      "'Twere folly still to hope for higher Heaven.",
+      "For I have revell'd, when the sun was bright",
+      "I' the summer sky, in dreams of living light",
+      "And loveliness,- have left my very heart",
+      "In climes of my imagining, apart",
+      "From mine own home, with beings that have been",
+      "Of mine own thought- what more could I have seen?",
+      "'Twas once- and only once- and the wild hour",
+      "From my remembrance shall not pass- some power",
+      "Or spell had bound me- 'twas the chilly wind",
+      "Came o'er me in the night, and left behind",
+      "Its image on my spirit- or the moon",
+      "Shone on my slumbers in her lofty noon",
+      "Too coldly- or the stars- howe'er it was",
+      "That dream was as that night-wind- let it pass.",
+      "",
+      "I have been happy, tho' in a dream.",
+      "I have been happy- and I love the theme:",
+      "Dreams! in their vivid coloring of life,",
+      "As in that fleeting, shadowy, misty strife",
+      "Of semblance with reality, which brings",
+      "To the delirious eye, more lovely things",
+      "Of Paradise and Love- and all our own!",
+      "Than young Hope in his sunniest hour hath known."
+    ],
+    "linecount": "34",
+    "delimetedLines":"same as lines but every position in array are unified by a delimited param"
+}
+```
