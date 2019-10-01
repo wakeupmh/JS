@@ -49,11 +49,12 @@ npm i --save express
 npm i --save nodemon 
 npm i --save personality-text-summary 
 npm i --save watson-developer-cloud
+npm i --save dotenv
 
 ```
 Or just:
 ```javascript
-npm i --save axios body-parser express nodemon personality-text-summary watson-developer-cloud
+npm i --save axios body-parser express nodemon personality-text-summary watson-developer-cloud dotenv
 ```
 ### Retrieving the poem 📜
 The **poetryModel.js** where I access to **PoetryDB**
@@ -132,3 +133,83 @@ The final result is something like that:
     "delimetedLines":"same as lines but every position in array are unified by a delimited param"
 }
 ```
+And now the most important part:
+
+### Analysing Personality 🧐
+First of all we need to set our keys (in this case is username and password of your ibm's account) in **environment variables**, if you don't know **env** or why this is so important when you developing with **Node.js** look this [article](https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786)
+
+Analysing the data is quite simple, we just need require our npm module previous installed, post into our previous created poetry route to retrieve the poem, finally fire the method **profile** inside **personality** module passing the params, and we have the analysed data like a magic pass 🎩🔮🎇
+```javascript
+require("dotenv").config();
+const PersonalityInsightsV3 =require('watson-developer-cloud/personality-insights/v3');
+const personality = new PersonalityInsightsV3({
+	username: process.env.PERSONALITY_INSIGHTS_USERNAME,
+	password: process.env.PERSONALITY_INSIGHTS_PASSWORD,
+	version_date: process.env.PERSONALITY_INSIGHTS_VERSION_DATE
+});
+const v3EnglishTextSummaries =  new  PersonalityTextSummaries({
+	locale:  'en',
+	version:  'v3'
+});
+
+const  getTextSummary = personalityProfile  => {
+	let textSummary =  v3EnglishTextSummaries.getSummary(personalityProfile);
+	if (typeof(textSummary)!== 'string') {
+		console.log("Could not get summary.");
+	} else {
+		return textSummary;
+	}
+};
+const getPersonalityInside = async (_author, _title, _delimiter) =>{
+
+let content = await axios.post('http://localhost:3000/api/poetry/get-poetry/',
+			{
+				author:_author,
+				title: _title,
+				delimiter:_delimiter
+			})
+			.then(result  => {
+				return result
+			})
+			.catch(error  => {
+				return  null
+			});
+
+let params = {
+	content: content.data.delimitedLines,
+	content_type:  'text/plain',
+	raw_scores:  true,
+	consumption_preferences:  true
+};
+
+return personality.profile(params)
+		.then(response  => {
+			return  getTextSummary(response)
+		})
+		.catch(error  =>console.log(error))
+}
+```
+### WTF is **PersonalityTextSummaries**?
+Our result is a combination of four major parts:
+-   **Personality**  results based on Big5 personality traits and facets
+-   **Needs**, which describe at a high level those aspects of a product that are likely to resonate with the author of the input text
+-   **Values**, which describe motivating factors that influence the author’s decision-making
+-   **Consumption Preferences**, which indicate the author’s likelihood to prefer different products, services, and activities.
+
+You can get a lot more detail from the  [official documentation](https://console.bluemix.net/docs/services/personality-insights/output.html#output)
+
+Asides this, there’s an [npm module](https://www.npmjs.com/package/personality-text-summary) (that we installed earlier )that gives you a textual analysis of that whole JSON response from the Personality Insights API.   Turn it into human readable language in a *Freudian* style.
+
+Running this in Dreams of Edgar Allan Poe, we have this result:
+```javascript
+{
+	"personality": "You are inner-directed.\nYou are appreciative of art: you enjoy beauty and seek out creative experiences. You are philosophical: you are open to and intrigued by new ideas and love to explore them. And you are empathetic: you feel what others feel and are compassionate towards them.\nYour choices are driven by a desire for well-being.\nYou are relatively unconcerned with achieving success: you make decisions with little regard for how they show off your talents. You consider independence to guide a large part of what you do: you like to set your own goals to decide how to best achieve them."
+
+}
+```
+Now you are able to writing 100 words text and analyse yourself,   
+Or you can go around giving a postmodern **Lacanian** 😂
+
+Thanks for your most valuable asset: **time** ⌚!
+  
+A little **nilism** to close with a golden key: *Beliefs are more dangerous enemies of truth than lies.* 🍻
