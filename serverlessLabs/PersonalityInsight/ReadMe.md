@@ -32,3 +32,26 @@ After all these steps clck on **Create**
 ![enter image description here](https://i.imgur.com/RZZvM8K.png)
 #### So finally our prize 🎆🎉 an **API KEY**  .
 ![enter image description here](https://i.imgur.com/gyEbCIU.png)
+
+# Hands-on
+![enter image description here](https://i.imgur.com/C4Kx8Q9.jpg)
+  
+I'll assume you already have a basic notion of **Node.js**, but if you don't have a look at this **Pramod Chandrayan** [article ](https://codeburst.io/getting-started-with-node-js-a-beginners-guide-b03e25bca71b).
+  
+This application is an API that has a **route** which you use from **PoetryDB**, which according to the [site](https://github.com/thundercomb/poetrydb/blob/master/README.md) "*is the first API for next generation internet poets*".
+ 
+In this article I will cover only the most important parts of how I take a poem to send to **Watson** to analyze the author's personality while abstracting his art.you can see my **full code** [**here**](https://github.com/wakeupmh/JS/tree/master/serverlessLabs/PersonalityInsight/api).
+### Installs 📚
+```javascript
+npm i --save axios 
+npm i --save body-parser 
+npm i --save express 
+npm i --save nodemon 
+npm i --save personality-text-summary 
+npm i --save watson-developer-cloud
+
+```
+Or just:
+```javascript
+npm i --save axios body-parser express nodemon personality-text-summary watson-developer-cloud
+```
