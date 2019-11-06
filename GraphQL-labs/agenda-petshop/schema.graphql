@@ -1,3 +1,13 @@
-type Query{
-    status: String!
+type Cliente {
+    id: ID!,
+    nome: String!,
+    cpf: String! # ! -> not null
 }
+
+type Mutation {
+    adicionarCliente(nome: String!, cpf: String!): Cliente!
+}#insert
+
+type Query {
+    status: String!
+}#consult

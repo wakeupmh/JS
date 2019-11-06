@@ -15,6 +15,13 @@ conexao.connect(erro => {
 const resolvers = {
   Query:{
     status: () => "Servidor rodando!"
+  },
+  Mutation: {
+    adicionarCliente: (root, params) => ({
+      id: 1,
+      nome: params.nome,
+      cpf: params.cpf
+    })  
   }
 }
 
