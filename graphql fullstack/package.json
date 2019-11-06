@@ -1,0 +1,21 @@
+{
+  "name": "graphql-fullstack-app",
+  "version": "1.0.0",
+  "description": "my first steps with graphql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node — experimental-modules app.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "js"
+  },
+  "author": "@wakeupmh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.5.8"
+  }
+}
