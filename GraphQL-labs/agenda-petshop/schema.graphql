@@ -10,5 +10,6 @@ type Mutation {
 
 type Query {
     status: String!,
-    clientes: [Cliente!]!
+    clientes: [Cliente!]!,
+    cliente(id: ID!): Cliente!
 }#consult
