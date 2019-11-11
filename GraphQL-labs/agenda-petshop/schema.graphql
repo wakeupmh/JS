@@ -9,5 +9,6 @@ type Mutation {
 }#insert
 
 type Query {
-    status: String!
+    status: String!,
+    clientes: [Cliente!]!
 }#consult
