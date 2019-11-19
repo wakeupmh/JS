@@ -47,9 +47,6 @@ export default {
         }
     },
     methods: {
-        solution() {
-
-        },
         giveCandies(candies) {
             let _set = new Set();
             for(i in candies)
