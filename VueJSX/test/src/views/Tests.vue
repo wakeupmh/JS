@@ -13,7 +13,8 @@ export default {
           nums.forEach(num => {
             if (num < this.min) {
               this.min = num;
-            } else if (num > this.max) {
+            } 
+            if (num > this.max) {
               this.max = num;
             }
           });
@@ -29,7 +30,7 @@ export default {
     }
   },
   mounted() {
-    this.test([5, 6, 7, 19])
+    this.test([7,6,5,4])
   },
   render() {
     return (
