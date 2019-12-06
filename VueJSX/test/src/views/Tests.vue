@@ -31,6 +31,7 @@ export default {
   },
   mounted() {
     this.test([7,6,5,4])
+    
   },
   render() {
     return (
