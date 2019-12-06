@@ -1,32 +1,45 @@
 <script>
-    export default {
-        methods: {
-            greater(){
-                let greaterClass = {
-                    find: nums =>{
-                        const min = Number.MAX_VALUE;
-                        const max = Number.MIN_VALUE;
-                        nums.forEach(element => {
-                            if(num < min) 
-                                min = num;
-                            else if(num > max)
-                                max = num;
-                        });
-                    },
-                    getMin: () => min,
-                    getMax: () => max
-                }
-                return greaterClass
+export default {
+  data() {
+    return {
+      min: Number.MAX_VALUE,
+      max: Number.MIN_VALUE
+    };
+  },
+  methods: {
+    greater() {
+      let greaterClass = {
+        find: nums => {
+          nums.forEach(num => {
+            if (num < this.min) {
+              this.min = num;
+            } else if (num > this.max) {
+              this.max = num;
             }
+          });
         },
-        render () { 
-            return (
-            <div>
-                <div class="about">
-                <h1>This is an about page</h1>
-                </div>
-            </div>
-            ) 
-        }
+        getMin: () => this.min,
+        getMax: () => this.max
+      };
+      return greaterClass;
+    },
+    test(array) {
+      let algorithm = this.greater();
+      algorithm.find(array);
     }
+  },
+  mounted() {
+    this.test([5, 6, 7, 19])
+  },
+  render() {
+    return (
+      <div>
+        <div class="about">
+          <h1>MIN: {this.min}</h1>
+          <h1>MAX: {this.max}</h1>
+        </div>
+      </div>
+    );
+  }
+};
 </script>
