@@ -7,6 +7,8 @@ module.exports = {
   operatorAliases: false,
   logging: false,
   define: {
+    "createdAt": "created_at",
+    "updatedAt": "updated_at",
     timestamps: true,
     undescored: true,
     undescoredAll: true
