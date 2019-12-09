@@ -1,13 +1,26 @@
-describe('Authentication', () =>{
-  // it('should receive JWT token when authenticated with valid credentials', () => {
-    
-  // });
-  it('should sum two numbers', () =>{
-    const x = 3;
-    const y = 4;
+const request = require('supertest');
+const app = require('../../src/app')
+const { User } = require('../../src/app/models');
+const truncate = require('../utils/truncate');
 
-    const sum = x + y;
-
-    expect(sum).toBe(7);
+describe('Authentication', () => {
+  beforeEach(async () => {
+    await truncate();
   })
+    
+  it('should authenticate with valid credentials', async () => {
+    const user = await User.create({
+      name: 'Marcos',
+      email: 'devopmh@gmail.com',
+      password_hash: '123'
+    });
+
+    const response = await request(app)
+      .post('/sessions')
+      .send({
+        email: user.email,
+        password: '123456'
+    })
+    expect(response).toBe(200)
+  });
 })
