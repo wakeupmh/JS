@@ -29,19 +29,18 @@ describe('Authentication', () => {
       await truncate();
     })
       
-    it('should authenticate with valid credentials', async () => {
-      const user = await User.create({
-        name: 'Marcos',
-        email: 'devopmh@gmail.com',
-        password_hash: '1234'
-      });
-  
-      const response = await request(app)
-        .post('/sessions')
-        .send({
-          email: user.email,
-          password: '12231433456'
-        })
-      expect(response).toBe(401)
+    const user = await User.create({
+      name: 'Marcos',
+      email: 'devopmh@gmail.com',
+      password_hash: '1234'
+    });
+
+    const response = await request(app)
+      .post('/sessions')
+      .send({
+        email: user.email,
+        password: '12231433456'
+      })
+    expect(response).toBe(401)
   })
 })
