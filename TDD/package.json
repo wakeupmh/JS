@@ -1,0 +1,14 @@
+{
+  "name": "tdd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^7.14.0",
+    "sequelize": "^5.21.2"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^5.5.1"
+  }
+}
