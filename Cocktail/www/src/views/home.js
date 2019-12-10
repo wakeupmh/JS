@@ -10,19 +10,22 @@ const homeStyle = css `
     justify-content:center;
     flex-wrap:wrap;
 `
-function teste(a){
-    console.log(a);
-}
 
 function Home({}){
+    const changeComponent = ingredient =>{
+        setUrl(`https://the-cocktail-db.p.rapidapi.com/filter.php?i=${ingredient}`)
+    }
+    const [selectComponent, setSelectComponent] = useState('card')
+    const [url, setUrl] = useState('https://the-cocktail-db.p.rapidapi.com/list.php?i=list')
+
     const { loading, data } = useFetch(
-        "https://the-cocktail-db.p.rapidapi.com/list.php?i=list"
+        url
     );
     return (
         <div css={homeStyle}>
             {data &&
                 data.drinks.length > 0 &&
-                data.drinks.map((drink, i) => <Card key={i} data={drink.strIngredient1} callBack={() => teste(drink.strIngredient1)}/>)} 
+                data.drinks.map((drink, i) => <Card key={i} data={drink.strIngredient1} callBack={() => changeComponent(drink.strIngredient1)}/>)} 
         </div>
     )
 }
