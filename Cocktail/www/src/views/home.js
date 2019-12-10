@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Card from '../components/card'
 import useFetch from "../services/useFetch";
 /** @jsx jsx */
@@ -10,6 +10,9 @@ const homeStyle = css `
     justify-content:center;
     flex-wrap:wrap;
 `
+function teste(a){
+    console.log(a);
+}
 
 function Home({}){
     const { loading, data } = useFetch(
@@ -19,7 +22,7 @@ function Home({}){
         <div css={homeStyle}>
             {data &&
                 data.drinks.length > 0 &&
-                data.drinks.map((drink) => <Card data={drink.strIngredient1}/>)} 
+                data.drinks.map((drink, i) => <Card key={i} data={drink.strIngredient1} callBack={() => teste(drink.strIngredient1)}/>)} 
         </div>
     )
 }

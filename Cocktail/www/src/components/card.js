@@ -5,7 +5,7 @@ const boxStyle = css`
   padding: 32px;
   margin-bottom: 5px;
   width: 50%;
-  background-color: hotpink;
+  background-color: #DB93B0;
   font-size: 24px;
   border-radius: 4px;
   &:hover {
@@ -19,9 +19,9 @@ const Box = props => (
   />
 );
 
-function Card({data}) {
+function Card({data, callBack}) {
   return (
-    <Box>
+    <Box onClick={() => callBack(data)}>
       {data}
     </Box>
   )
