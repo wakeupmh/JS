@@ -17,7 +17,7 @@ const useFetch = (url, initialValue) => {
         setLoading(true);
         const response = await axios.get(url, config);
         if (response.status === 200) {
-          setData(response.data);
+          setData(response.data.drinks);
         }
       } catch (error) {
         throw error;
