@@ -9,14 +9,21 @@ function Card({data, callBack, img}) {
       { img && <div css={css`
         background-image: url(${img});
         background-size:cover;
-        width: 4em;
-        height: 4em;
-        border-radius: 8px;
+        background-position:center;
+        width: 100%;
+        padding-bottom: 8em;
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
         &:hover {
           box-shadow: 1px 1px 4px black;
         }
       `}/> }
-      {data}
+      <div css={css`
+        margin: auto 0;
+        padding: 10px;
+      `}> 
+        {data} 
+      </div>
     </Box>
   )
 }

@@ -2,20 +2,23 @@
 import { css, jsx } from '@emotion/core'
 
 const boxStyle = css`
-    padding: 32px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    margin:5px;
     display:flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     text-align: center;
     flex-direction: column;
-    width: 50%;
-    background-color: #90C3C8;
-    font-size: 24px;
-    border-radius: 4px;
+    width: 45%;
+    background-color: #DADAD9; 
+    color: #36382E;
+    box-shadow: 0px 1px 5px #0000008c;
+    font-size: 16px;
+    padding-bottom: 5px;
+    border-radius: 8px;
     &:hover {
-        color: white;
+        color: #0D21A1;
     }
 `
 
