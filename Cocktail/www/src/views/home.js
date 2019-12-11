@@ -12,7 +12,15 @@ const homeStyle = css `
     justify-content:space-between;
     flex-wrap:wrap; 
 `
-
+const inputSearchStyle = css`
+    width: 90%;
+    padding: 10px;
+    border-radius: 5px;
+    border: transparent;
+    box-shadow: 0px 0px 3px #00000082;
+    background-color: #fefefe;
+    margin-bottom: 5%;
+`
 function Home(){
     const [component, setComponent] = useState('ingredients')
     const [url, setUrl] = useState('https://the-cocktail-db.p.rapidapi.com/list.php?i=list')
@@ -29,32 +37,37 @@ function Home(){
     const handleChange = event => {
         setSearchTerm(event.target.value);
     };
-    const results = !searchTerm
-    ? data
-    : data.filter(drink =>
-        drink.strDrink.toLowerCase().includes(searchTerm.toLocaleLowerCase())
-    );
-
+    const results = propertyToFilter => {
+        return !searchTerm ? data : 
+            data.filter(drink =>
+                drink[propertyToFilter].toLowerCase().includes(searchTerm.toLocaleLowerCase())
+            );
+    }
     
     return (
         <div css={homeStyle}>
-            
-            {component === 'ingredients' && data &&
-                data.map((ingredient, i) => <Card key={i} data={ingredient.strIngredient1} callBack={() => changeComponent(ingredient.strIngredient1, 'drinks')}/>)} 
-            {component === 'drinks' && data && 
+            <form css={css`
+                width:100%;
+            `}> 
                 <input 
+                    css={inputSearchStyle}
                     value={searchTerm} 
                     onChange={handleChange} 
                     type="text"
-                    placeholder="Search"
+                    placeholder={`🔍 Insert a ${component === 'ingredients' ? "ingredients'" : "drink's"} name`}
                 />
-            }
-            {
-                component === 'drinks' && data &&
-                results.map((drink,i) => (
-                    <Card key={i} data={drink.strDrink} img={drink.strDrinkThumb} callBack={() => changeComponent(drink.strIngredient1, 'ingredients')}/>
-                ))
-            }
+            </form>
+            {component === 'ingredients' && data &&
+                results('strIngredient1').map((ingredient, i) => 
+                    <Card key={i} data={ingredient.strIngredient1} 
+                        callBack={() => changeComponent(ingredient.strIngredient1, 'drinks')}/>)} 
+                        
+            {component === 'drinks' && data &&
+                results('strDrink').map((drink,i) => (
+                    <Card key={i} 
+                        data={drink.strDrink} 
+                        img={drink.strDrinkThumb} 
+                        callBack={() => changeComponent(drink.strIngredient1, 'ingredients')}/>))}
         </div>
     )
 }
