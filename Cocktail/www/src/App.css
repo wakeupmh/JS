@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(90deg,  #130303 30%, #f7f7f7 30%);
+  background-image: linear-gradient(90deg,  #ff9800  35%, #f7f7f7 35%);
 }
 .App{
   display: flex;

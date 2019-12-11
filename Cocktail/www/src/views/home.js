@@ -4,21 +4,28 @@ import useFetch from "../services/useFetch";
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 
-const homeStyle = css `
+const containerStyle = css `
     display:flex;
-    padding-top:5%;
     width: 80%;
     text-align:center;
     justify-content:space-between;
     flex-wrap:wrap; 
 `
+const homeStyle = css `
+    display:flex;
+    padding-top:5%;
+    width: 80%;
+    text-align:center;
+    justify-content:center;
+    flex-wrap:wrap; 
+`
 const inputSearchStyle = css`
-    width: 90%;
+    width: 70%;
     padding: 10px;
     border-radius: 5px;
     border: transparent;
     box-shadow: 0px 0px 3px #00000082;
-    background-color: #fefefe;
+    background-color: #fff;
     margin-bottom: 5%;
 `
 function Home(){
@@ -39,13 +46,16 @@ function Home(){
     };
     const results = propertyToFilter => {
         return !searchTerm ? data : 
-            data.filter(drink =>
-                drink[propertyToFilter].toLowerCase().includes(searchTerm.toLocaleLowerCase())
-            );
+            data.filter(drink => drink[propertyToFilter].toLowerCase().includes(searchTerm.toLocaleLowerCase()));
     }
     
     return (
         <div css={homeStyle}>
+            <span aria-label="drink" role="img" 
+                css={css`font-size:2em; margin-bottom:1em; text-shadow:1px 1px 2px #000000b5;`}>
+                🍹 Drink's catalogue
+            </span>
+            
             <form css={css`
                 width:100%;
             `}> 
@@ -57,17 +67,19 @@ function Home(){
                     placeholder={`🔍 Insert a ${component === 'ingredients' ? "ingredients'" : "drink's"} name`}
                 />
             </form>
-            {component === 'ingredients' && data &&
-                results('strIngredient1').map((ingredient, i) => 
-                    <Card key={i} data={ingredient.strIngredient1} 
-                        callBack={() => changeComponent(ingredient.strIngredient1, 'drinks')}/>)} 
-                        
-            {component === 'drinks' && data &&
-                results('strDrink').map((drink,i) => (
-                    <Card key={i} 
-                        data={drink.strDrink} 
-                        img={drink.strDrinkThumb} 
-                        callBack={() => changeComponent(drink.strIngredient1, 'ingredients')}/>))}
+            <div css={containerStyle}>
+                {component === 'ingredients' && data &&
+                    results('strIngredient1').map((ingredient, i) => 
+                        <Card key={i} data={ingredient.strIngredient1} 
+                            callBack={() => changeComponent(ingredient.strIngredient1, 'drinks')}/>)} 
+
+                {component === 'drinks' && data &&
+                    results('strDrink').map((drink,i) => (
+                        <Card key={i} 
+                            data={drink.strDrink} 
+                            img={drink.strDrinkThumb} 
+                            callBack={() => changeComponent(drink.strIngredient1, 'ingredients')}/>))}
+            </div>
         </div>
     )
 }
