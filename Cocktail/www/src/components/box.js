@@ -19,6 +19,7 @@ const boxStyle = css`
     border-radius: 8px;
     &:hover {
         color: #ff9800;
+        box-shadow: 0px 1px 8px #000000b5;
     }
 `
 

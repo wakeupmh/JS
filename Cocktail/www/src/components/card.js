@@ -14,9 +14,6 @@ function Card({data, callBack, img}) {
         padding-bottom: 8em;
         border-top-right-radius: 8px;
         border-top-left-radius: 8px;
-        &:hover {
-          box-shadow: 1px 1px 4px black;
-        }
       `}/> }
       <div css={css`
         margin: auto 0;
