@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Card from '../components/card'
+import InputSearch from '../components/inputSearch'
 import useFetch from "../services/useFetch";
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
@@ -18,15 +19,6 @@ const homeStyle = css `
     text-align:center;
     justify-content:center;
     flex-wrap:wrap; 
-`
-const inputSearchStyle = css`
-    width: 70%;
-    padding: 10px;
-    border-radius: 5px;
-    border: transparent;
-    box-shadow: 0px 0px 3px #00000082;
-    background-color: #fff;
-    margin-bottom: 5%;
 `
 function Home(){
     const [component, setComponent] = useState('ingredients')
@@ -59,12 +51,10 @@ function Home(){
             <form css={css`
                 width:100%;
             `}> 
-                <input 
-                    css={inputSearchStyle}
+                <InputSearch
                     value={searchTerm} 
-                    onChange={handleChange} 
-                    type="text"
-                    placeholder={`🔍 Insert a ${component === 'ingredients' ? "ingredients'" : "drink's"} name`}
+                    handleChange={(e) => handleChange(e)} 
+                    placeholderText={`🔍 Insert a ${component === 'ingredients' ? "ingredients'" : "drink's"} name`}
                 />
             </form>
             <div css={containerStyle}>
