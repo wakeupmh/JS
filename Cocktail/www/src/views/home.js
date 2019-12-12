@@ -27,6 +27,7 @@ function Home(){
     const { loading, data } = useFetch(url);
     
     const changeComponent = (ingredient, component) => {
+        console.log(ingredient);
         if(component === 'drinks')
             setUrl(`https://the-cocktail-db.p.rapidapi.com/filter.php?i=${ingredient}`)
         else
