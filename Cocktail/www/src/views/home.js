@@ -63,6 +63,16 @@ function Home(){
                 handleChange={(e) => handleChange(e)} 
                 placeholderText={`🔍 Insert a ${component === 'ingredients' ? "ingredients'" : "drink's"} name`}
               />
+            {
+              loading &&
+                <Loader
+                  type="MutatingDots"
+                  color="#ff9800"
+                  height={100}
+                  width={100}
+                  timeout={1000}
+                />
+              }
             </form>
             <Suspense 
               fallback={
@@ -72,16 +82,6 @@ function Home(){
                 </span>
               }
             >
-              {
-                loading &&
-                  <Loader
-                    type="MutatingDots"
-                    color="#ff9800"
-                    height={100}
-                    width={100}
-                    timeout={1000}
-                  />
-              }
               <div css={containerStyle}>
                 {component === 'ingredients' && data && data.length > 0 && !loading &&
                   results('strIngredient1').map((ingredient, i) => 
