@@ -30,15 +30,15 @@ function Home(){
     const { loading, data } = useFetch(url);
     
     const changeComponent = (ingredient, component) => {
-        if(component === 'drinks'){
-          setUrl(`https://the-cocktail-db.p.rapidapi.com/filter.php?i=${ingredient}`);
-          setSearchTerm("");
-        }
-        else{
-          setUrl('https://the-cocktail-db.p.rapidapi.com/list.php?i=list');
-          setSearchTerm("");
-        }
-        setComponent(component)
+			if(component === 'drinks'){
+				setUrl(`https://the-cocktail-db.p.rapidapi.com/filter.php?i=${ingredient}`);
+				setSearchTerm("");
+			}
+			else{
+				setUrl('https://the-cocktail-db.p.rapidapi.com/list.php?i=list');
+				setSearchTerm("");
+			}
+			setComponent(component)
     }
     const handleChange = event => {
       setSearchTerm(event.target.value);
@@ -47,7 +47,7 @@ function Home(){
       return !searchTerm ? data : 
         data.filter(drink => drink[propertyToFilter].toLowerCase().includes(searchTerm.toLocaleLowerCase()));
     }
-    
+		
     return (
         <div css={homeStyle}>
             <span aria-label="drink" role="img" 
@@ -64,14 +64,14 @@ function Home(){
                 placeholderText={`🔍 Insert a ${component === 'ingredients' ? "ingredients'" : "drink's"} name`}
               />
             {
-              loading &&
-                <Loader
-                  type="MutatingDots"
-                  color="#ff9800"
-                  height={100}
-                  width={100}
-                  timeout={1000}
-                />
+							loading &&
+								<Loader
+									type="MutatingDots"
+									color="#ff9800"
+									height={100}
+									width={100}
+									timeout={1000}
+								/>
               }
             </form>
             <Suspense 
