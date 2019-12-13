@@ -5,18 +5,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This project is an estudy about React Hooks using a drink's OpenAPI.
 
 ## Packages 
-- [👩‍🎤 Emotion (CSS-in-JS)](https://github.com/emotion-js/emotion)
+- [Emotion (CSS-in-JS)](https://github.com/emotion-js/emotion)
 - [Axios](https://github.com/axios/axios)
 - [React Loader Spinner](https://github.com/mhnpd/react-loader-spinner)
 
 ## Techniques
 ### [Lazy & Suspense 😴](https://blog.bitsrc.io/lazy-loading-react-components-with-react-lazy-and-suspense-f05c4cfde10c)
-    ### Why is Lazy Loading (& Suspense) Important
-    Firstly, bundling involves aligning our code components in progression and putting them in one javascript chunk that it passes to the browser; but as our application grows, we notice that bundle gets very cumbersome in size. This can quickly make using your application very hard and especially slow. 
+### Why is Lazy Loading (& Suspense) Important
+Firstly, bundling involves aligning our code components in progression and putting them in one javascript chunk that it passes to the browser; but as our application grows, we notice that bundle gets very cumbersome in size. This can quickly make using your application very hard and especially slow. 
     
-    With Code splitting, the bundle can be split to smaller chunks where the most important chunk can be loaded first and then every other secondary one lazily loaded.
+With Code splitting, the bundle can be split to smaller chunks where the most important chunk can be loaded first and then every other secondary one lazily loaded.
 
-    Also, while building applications we know that as a best practise consideration should be made for users using mobile internet data and others with really slow internet connections. We the developers should always be able to control the user experience even during a suspense period when resources are being loaded to the DOM.
+Also, while building applications we know that as a best practise consideration should be made for users using mobile internet data and others with really slow internet connections. We the developers should always be able to control the user experience even during a suspense period when resources are being loaded to the DOM.
+
 ### [Hooks 🎣](https://pt-br.reactjs.org/docs/hooks-intro.html) 
 
 ## Available Scripts
