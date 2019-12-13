@@ -11,7 +11,7 @@ This project is an estudy about React Hooks using a drink's OpenAPI.
 
 ## Techniques
 ### [Lazy & Suspense 😴](https://blog.bitsrc.io/lazy-loading-react-components-with-react-lazy-and-suspense-f05c4cfde10c)
-    ### Why is Lazy Loading (& Suspense) Important
+### Why is Lazy Loading (& Suspense) Important
     Firstly, bundling involves aligning our code components in progression and putting them in one javascript chunk that it passes to the browser; but as our application grows, we notice that bundle gets very cumbersome in size. This can quickly make using your application very hard and especially slow. 
     
     With Code splitting, the bundle can be split to smaller chunks where the most important chunk can be loaded first and then every other secondary one lazily loaded.
