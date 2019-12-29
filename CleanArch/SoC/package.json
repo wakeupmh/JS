@@ -6,6 +6,8 @@
   "author": "github.com/wakeupmh",
   "license": "MIT",
   "dependencies": {
+    "awilix": "^4.2.3",
+    "awilix-express": "^3.0.0",
     "events": "^3.0.0",
     "structure": "^1.8.0"
   }
