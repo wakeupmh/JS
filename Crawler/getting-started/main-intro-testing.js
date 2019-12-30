@@ -1,7 +1,7 @@
 
 const cheerio = require('cheerio');
 const url = "https://www.iban.com/exchange-rates";
-const fetchData = require('./fetchData');
+const fetchData = require('./src/utils/fetchData');
 
 fetchData(url).then(res => {
     const html = res.data;
