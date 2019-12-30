@@ -9,7 +9,7 @@ admin.initializeApp({
 
 let db = admin.firestore();
 let date = new Date();
-let currDate = `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
+let currDate = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`;
 parentPort.once("message", (message) => {
     console.log("Recieved data from mainWorker...");
     db.collection("Rates").doc(currDate).set({
