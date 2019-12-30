@@ -1,4 +1,11 @@
 const cheerio = require('cheerio');
+const fetchData = require('./fetchData');
+
+function formatStr(arr, dataObj){
+    let regExp = /[^A-Z]*(^\D+)/ // regex to match all the words before the first digit
+    let newArr = arr[0].split(regExp); // split array element 0 using the regExp rule
+    dataObj[newArr[1]] = newArr[2]; // store object 
+}
 
 const getData = async () => {
     const url = "https://www.iban.com/exchange-rates";
