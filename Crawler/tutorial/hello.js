@@ -8,6 +8,6 @@ if(isMainThread){
 } else{
     parentPort.once('message', message => {
         console.log(message);
-        console.log("Worker thread: Hello!");
+        parentPort.postMessage("Worker thread: Hello!");
     })
 }
