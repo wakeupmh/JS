@@ -4,7 +4,7 @@
     "classification": 3,
     "weekday": 110,
     "weekend": 90,
-    "reward":{
+    "reward": {
       "weekday": 80,
       "weekend": 80
     }

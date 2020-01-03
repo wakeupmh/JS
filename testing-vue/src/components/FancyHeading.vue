@@ -11,6 +11,6 @@ export default {
       }
     };
   },
-  props: ["title", "color"]
+  props: ["title", "color", "font-size"]
 };
 </script>
