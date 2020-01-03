@@ -1,11 +1,4 @@
-const readline = require('readline')
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-  terminal: false
-})
-
-rl.on('line', function (line) {
-  console.log(line)
+process.stdin.on('readable', () => {
+  const userInput = process.stdin.read()
+  process.stdout.write(`Your Input was: ${userInput}`)
 })
