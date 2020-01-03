@@ -1,0 +1,32 @@
+[ 
+  {
+    "name": "Lakewood",
+    "classification": 3,
+    "weekday": 110,
+    "weekend": 90,
+    "reward":{
+      "weekday": 80,
+      "weekend": 80
+    }
+  },
+  {
+    "name": "Bridgewood",
+    "classification": 4,
+    "weekday": 160,
+    "weekend": 60,
+    "reward": {
+      "weekday": 110,
+      "weekend": 50
+    }
+  },
+  {
+    "name": "Ridgewood",
+    "classification": 5,
+    "weekday": 220,
+    "weekend": 150,
+    "reward": {
+      "weekday": 100,
+      "weekend": 40
+    }
+  }
+]
