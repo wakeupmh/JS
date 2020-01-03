@@ -1,4 +1,9 @@
+const testWeekDay = require('./use_case/isWeekend')
 process.stdin.on('readable', () => {
-  const userInput = process.stdin.read()
-  process.stdout.write(`Your Input was: ${userInput}`)
+  const userInput = process.stdin.read().toString()
+  console.log(userInput)
+  const splited = userInput.split(',')
+  splited.map(x => {
+    process.stdout.write(`Your Input is weekend: ${testWeekDay.isWeekend(x)}\n`)
+  })
 })
