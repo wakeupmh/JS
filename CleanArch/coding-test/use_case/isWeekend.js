@@ -1,6 +1,6 @@
 const dayOfWeek = require('./getDayOfWeek')
 
-exports.isWeekend =  string => {
+exports.isWeekend = string => {
   const isWeekend = {
     sat: () => true,
     sun: () => true,
