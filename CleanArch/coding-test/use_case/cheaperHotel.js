@@ -19,7 +19,6 @@ const reduceToMinValue = (keyPath, nestedKeyPath) => {
     }, hotels[0][keyPath])
   }
 }
-
 exports.findCheaper = string => {
   let min = Number.MAX_VALUE
   let aux
