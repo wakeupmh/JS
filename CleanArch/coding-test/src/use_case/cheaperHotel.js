@@ -1,24 +1,8 @@
 const weekDay = require('./isWeekend')
 const reward = require('./isReward')
+const minValue = require('./reduceToMinValue')
 const hotels = require('../infra/hotels.json')
 
-const reduceToMinValue = (keyPath, nestedKeyPath) => {
-  if (nestedKeyPath !== undefined) {
-    return hotels.reduce((min, j) => {
-      if (j[keyPath][nestedKeyPath] < min) {
-        return j[keyPath][nestedKeyPath]
-      }
-      return min
-    }, hotels[0][keyPath][nestedKeyPath])
-  } else {
-    return hotels.reduce((min, j) => {
-      if (j[keyPath] < min) {
-        return j[keyPath]
-      }
-      return min
-    }, hotels[0][keyPath])
-  }
-}
 exports.findCheaper = string => {
   let min = Number.MAX_VALUE
   let aux
@@ -27,15 +11,15 @@ exports.findCheaper = string => {
   for (const i in splited) {
     if (reward.isReward(string)) {
       if (weekDay.isWeekend(splited[i])) {
-        aux = reduceToMinValue('reward', 'weekend')
+        aux = minValue.reduceToMinValue(hotels, 'reward', 'weekend')
       } else {
-        aux = reduceToMinValue('reward', 'weekday')
+        aux = minValue.reduceToMinValue(hotels, 'reward', 'weekday')
       }
     } else {
       if (weekDay.isWeekend(splited[i])) {
-        aux = reduceToMinValue('weekend')
+        aux = minValue.reduceToMinValue(hotels, 'weekend')
       } else {
-        aux = reduceToMinValue('weekday')
+        aux = minValue.reduceToMinValue(hotels, 'weekday')
       }
     }
     if (aux < min) {
