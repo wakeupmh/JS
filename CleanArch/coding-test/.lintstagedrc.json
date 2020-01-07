@@ -1,6 +1,6 @@
 {
-  "*.js": [
-    "standard --fix",
+  "src/*.js": [
+    "standard --fix --no-verify",
     "git add"
   ]
 }
