@@ -1,0 +1,1 @@
+exports.isRewards = typeOfClient => !!typeOfClient.toLowerCase().includes('rewards')
