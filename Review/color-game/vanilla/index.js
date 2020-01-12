@@ -34,13 +34,13 @@ function clickSquare () {
     params.square[i].addEventListener("click", function() {
       let clickedColor = this.style.backgroundColor.replace(/\s+/g, ' ');
       if (clickedColor === params.retrievedColor) {
-        result.textContent = "Correct ☺️"
-        newGame.textContent = "Play Again?";
+        params.result.textContent = "Correct ☺️"
+        params.newGame.textContent = "Play Again?";
         changeColors(clickedColor);
-        h1.style.background = clickedColor;
+        params.h1.style.background = clickedColor;
       }   else{
         this.style.background = "var(--bodyBG)";
-        result.textContent = "Try Again ☹️";
+        params.result.textContent = "Try Again ☹️";
       }
     })
   }
