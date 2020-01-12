@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Lakewood",
+    "weekday":110,
+    "weekend": 90,
+    "reward": {
+      "weekday":80,
+      "weekend": 80
+    },
+    "classification":3
+  }
+]

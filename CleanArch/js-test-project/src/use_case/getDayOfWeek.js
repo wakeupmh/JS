@@ -1,0 +1,1 @@
+exports.getDayOfWeek = day => day.match(/\(([^)]+)\)/)[1]
