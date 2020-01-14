@@ -28,7 +28,7 @@ window.addEventListener('load', () => {
 
 })
 
-function clickSquare () {
+function clickSquare (params) {
   for(let i = 0; i < params.square.length; i++) {
     params.square[i].style.background = params.colors[i];
     params.square[i].addEventListener("click", function() {
