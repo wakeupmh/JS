@@ -13,9 +13,9 @@ export default {
     newGame: {
       type: String
     }
-  },
-  methods: {
-    newGame() {}
   }
+  // methods: {
+  //   newGame() {}
+  // }
 };
 </script>

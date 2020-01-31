@@ -22,10 +22,9 @@
     justify-content: space-around;
   
   }
-  
   .container {
-  margin: 20px auto;
-  max-width: 700px;
+    margin: 20px auto;
+    max-width: 700px;
   }
   
   h1 {
@@ -71,8 +70,8 @@
     -moz-transition: background 0.5s;
   }
   
-  #result {
-    display: inline-flex;
-    width: 22%;
-  }
+.nav span {
+  display: inline-flex;
+  width: 22%;
+}
   

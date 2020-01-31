@@ -1,5 +1,9 @@
 <template>
-  <div class="colorSquare" :style="`background-color:${color}`" />
+  <div
+    class="colorSquare"
+    :style="`background-color:${color}`"
+    @click="clickedColor"
+  />
 </template>
 
 <script>
@@ -8,6 +12,11 @@ export default {
     color: {
       type: String,
       required: true
+    }
+  },
+  methods: {
+    clickedColor(event) {
+      this.$emit("clickedColor", event.srcElement.style.backgroundColor);
     }
   }
 };
