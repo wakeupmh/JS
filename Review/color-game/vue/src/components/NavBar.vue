@@ -1,6 +1,6 @@
 <template>
   <div class="nav">
-    <button>{{ newGame }}</button>
+    <button @click="restartGame">{{ newGame }}</button>
     <span>{{ result }}</span>
   </div>
 </template>
@@ -13,9 +13,11 @@ export default {
     newGame: {
       type: String
     }
+  },
+  methods: {
+    restartGame() {
+      this.$emit("restartGame", true);
+    }
   }
-  // methods: {
-  //   newGame() {}
-  // }
 };
 </script>

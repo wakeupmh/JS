@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Play&display=swap');
+
 :root {
     --bodyBG: #232323;
     --white: #fff;
@@ -9,6 +11,7 @@
     margin: 0;
     font-weight: normal;
     text-transform: uppercase;
+    font-family: 'Play', sans-serif;
   }
   
   .nav {
@@ -41,16 +44,17 @@
   }
   
   button {
-  border: none;
-  background: none;
-  text-transform: uppercase;
-  height: 100%;
-  font-weight: bold;
-  color: var(--purple);
-  transition: all 0.4s;
-  -webkit-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  outline: none;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    height: 100%;
+    font-weight: bold;
+    color: var(--purple);
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    outline: none;
+    font-family: 'Play', sans-serif;
   }
   
   button:hover {
