@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Play&display=swap');
+
+:root {
+    --bodyBG: #232323;
+    --white: #fff;
+    --purple: #8a2be2;
+  }
+  
+  body {
+    background-color: var(--bodyBG);
+    margin: 0;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-family: 'Play', sans-serif;
+  }
+  
+  .nav {
+    background-color: var(--white);
+    height: 33px;
+    text-align: center;
+    color: var(--purple);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  
+  }
+  .container {
+    margin: 20px auto;
+    max-width: 700px;
+  }
+  
+  h1 {
+    color: var(--white);
+    line-height: 1.5;
+    text-align: center;
+    background-color: var(--purple);
+    margin: 0;
+    padding: 20px 0;
+  }
+  
+  #newGame {
+    font-size: 1em
+  }
+  
+  button {
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    height: 100%;
+    font-weight: bold;
+    color: var(--purple);
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    outline: none;
+    font-family: 'Play', sans-serif;
+  }
+  
+  button:hover {
+    color: var(--white);
+    background-color: var(--purple);
+  }
+  
+  .colorSquare {
+    width: 30%;
+    background-color: var(--white);
+    padding-bottom: 35%;
+    float: left;
+    margin: 1.66%;
+    border-radius:10%;
+    transition: background 0.5s;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+  }
+  
+.nav span {
+  display: inline-flex;
+  width: 22%;
+}
+  
