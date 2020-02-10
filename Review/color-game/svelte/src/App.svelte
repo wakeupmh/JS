@@ -6,12 +6,12 @@
   import Title from "./components/Title.svelte";
 
   $: retrievedColor = null;
-  $: result = null;
+  $: result = "";
   $: rgb = null;
-  $: newGame = null;
+  $: newGame = "";
   let colors = [];
   const SQUARES_QUANTITY = 6;
-  
+
   onMount(() => {
     initGame();
   })
