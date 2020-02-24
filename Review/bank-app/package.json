@@ -2,5 +2,8 @@
   "name": "bank-app",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.8.2"
+  }
 }
