@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "compile": "tsc"
+    "compile": "tsc",
+    "start": "tsc -w"
   },
   "devDependencies": {
     "typescript": "^3.8.2"
