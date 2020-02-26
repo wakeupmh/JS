@@ -1,5 +1,5 @@
 class View<T> {
-    protected _elemento: Element;
+    private _elemento: Element;
 
     constructor(selector: string) {
         this._elemento = document.querySelector(selector)
