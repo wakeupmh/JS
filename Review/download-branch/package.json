@@ -2,5 +2,15 @@
   "name": "download-branch",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "serve": "nodemon ./app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "puppeteer": "^2.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
 }
