@@ -1,14 +1,5 @@
-class NegociacoesView {
-    private _elemento: Element;
+class NegociacoesView extends View<Negociacoes> {
 
-    constructor(selector: string) {
-        this._elemento = document.querySelector(selector)
-    }
-
-    update(model: Negociacoes) :void {
-        this._elemento.innerHTML = this.template(model);
-    }
-    
     template(model: Negociacoes): string {
         return `
             <table class="table table-hover table-bordered">
